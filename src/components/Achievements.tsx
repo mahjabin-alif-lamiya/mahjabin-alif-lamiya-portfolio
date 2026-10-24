@@ -1,3 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FiAward, FiStar, FiTarget, FiZap } from "react-icons/fi";
+import { FaTrophy } from "react-icons/fa";
+
 interface Achievement {
   title: string;
   event: string;
@@ -12,134 +18,145 @@ const achievements: Achievement[] = [
     event: "PROTICHAMP AI Championship 1.0",
     year: "2026",
     awardType: "champion",
-    description: "Won 1st Place Championship in the Healthcare category with MediBondhu, an AI-powered medical symptom guidance web app.",
+    description:
+      "Won 1st Place Championship in the Healthcare category with MediBondhu, an AI-powered medical symptom guidance web app.",
   },
   {
     title: "Finalist",
     event: "NextGen Hackathon",
     year: "2025",
     awardType: "finalist",
-    description: "Selected as a Hackathon Finalist for engineering innovative, scalable software solutions under competitive time constraints.",
+    description:
+      "Selected as a Hackathon Finalist for engineering innovative, scalable software solutions under competitive time constraints.",
   },
   {
     title: "Certificate of Achievement",
     event: "SciBlitz 2.0 AI Hackathon",
     year: "IEEE CUET Student Branch",
     awardType: "achievement",
-    description: "Recognized for high-impact AI application development, presenting the foundation that evolved into the championship project MediBondhu.",
+    description:
+      "Recognized for high-impact AI application development, presenting the foundation that evolved into the championship project MediBondhu.",
   },
   {
     title: "Semi-Finalist",
     event: "ICT Olympiad (Season 2 & Season 3)",
     year: "2025 & 2026",
     awardType: "semifinalist",
-    description: "Advanced to national semi-finals across two consecutive seasons, testing algorithmic reasoning and computer science fundamentals.",
+    description:
+      "Advanced to national semi-finals across two consecutive seasons, testing algorithmic reasoning and computer science fundamentals.",
   },
   {
     title: "Semi-Finalist",
     event: "Bangla Innovator",
     awardType: "semifinalist",
-    description: "Honored as a national semi-finalist for innovative technology proposals focused on local technological empowerment.",
+    description:
+      "Honored as a national semi-finalist for innovative technology proposals focused on local technological empowerment.",
   },
   {
     title: "Participant",
     event: "CUET CSE Fest DevOps Hackathon",
     year: "Preliminary Round",
     awardType: "participant",
-    description: "Participated in hands-on continuous deployment, containerization, and infrastructure engineering challenges.",
+    description:
+      "Participated in hands-on continuous deployment, containerization, and infrastructure engineering challenges.",
   },
 ];
 
-function AwardBadge({ type }: { type: Achievement["awardType"] }) {
-  switch (type) {
-    case "champion":
-      return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold uppercase tracking-wider">
-          <svg className="w-3.5 h-3.5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-          Champion
-        </span>
-      );
-    case "finalist":
-      return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-900 border border-blue-300 text-xs font-bold uppercase tracking-wider">
-          Finalist
-        </span>
-      );
-    case "achievement":
-      return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-900 border border-purple-300 text-xs font-bold uppercase tracking-wider">
-          Achievement
-        </span>
-      );
-    case "semifinalist":
-      return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-300 text-xs font-bold uppercase tracking-wider">
-          Semi-Finalist
-        </span>
-      );
-    default:
-      return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-xs font-medium uppercase tracking-wider">
-          Participant
-        </span>
-      );
-  }
-}
+const badgeConfig = {
+  champion: {
+    label: "Champion",
+    icon: FaTrophy,
+    className: "border-amber-400/60 bg-amber-400/15 text-amber-300",
+  },
+  finalist: {
+    label: "Finalist",
+    icon: FiStar,
+    className: "border-sky-400/60 bg-sky-400/15 text-sky-300",
+  },
+  achievement: {
+    label: "Achievement",
+    icon: FiAward,
+    className: "border-violet-400/60 bg-violet-400/15 text-violet-300",
+  },
+  semifinalist: {
+    label: "Semi-Finalist",
+    icon: FiTarget,
+    className: "border-slate-300/40 bg-slate-300/10 text-slate-200",
+  },
+  participant: {
+    label: "Participant",
+    icon: FiZap,
+    className: "border-border bg-background/70 text-muted-foreground",
+  },
+} as const;
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-20 md:py-28 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-accent mb-2">
-            Recognition & Honors
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
-            Competitions & Achievements
+    <section id="achievements" className="section-shell">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-amber-400/12 to-transparent" />
+      <div className="section-inner">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="section-kicker">Recognition & Honors</p>
+          <h2 className="section-title font-display">
+            Competitions & <span className="gradient-text">Achievements</span>
           </h2>
-          <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
-          <p className="mt-4 text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
+          <div className="section-divider" />
+          <p className="mt-4 mx-auto max-w-2xl text-base text-muted-foreground">
             Verified competitive awards, hackathon outcomes, and national olympiad recognitions.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Achievements Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.map((item, idx) => (
-            <div
-              key={idx}
-              className={`rounded-2xl p-6 border transition-all duration-200 flex flex-col justify-between ${
-                item.awardType === "champion"
-                  ? "bg-gradient-to-br from-amber-50/50 via-white to-slate-50 border-amber-300 shadow-sm hover:shadow-md ring-1 ring-amber-200"
-                  : "bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300"
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <AwardBadge type={item.awardType} />
-                  {item.year && (
-                    <span className="text-xs font-medium text-slate-500">
-                      {item.year}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {achievements.map((item, index) => {
+            const config = badgeConfig[item.awardType];
+            const Icon = config.icon;
+            const isChampion = item.awardType === "champion";
+
+            return (
+              <motion.article
+                key={`${item.event}-${index}`}
+                className={`group relative overflow-hidden rounded-2xl border transition-transform hover:-translate-y-1 ${
+                  isChampion
+                    ? "border-amber-400/60 bg-gradient-to-br from-amber-400/12 via-card/80 to-card/80"
+                    : "border-border bg-card/80"
+                }`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: index * 0.08 }}
+              >
+                {isChampion && (
+                  <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-amber-400/18 blur-3xl" />
+                )}
+                <div className="relative flex flex-col gap-4 p-6">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs ${config.className}`}
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      {config.label}
                     </span>
-                  )}
+                    {item.year && (
+                      <span className="text-xs text-muted-foreground">{item.year}</span>
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.event}</h3>
+                    <p className="mt-1 text-sm text-accent">{item.title}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-
-                <h3 className="text-lg font-bold text-navy-950 mb-1">
-                  {item.event}
-                </h3>
-                <p className="text-xs font-semibold text-accent mb-3">
-                  {item.title}
-                </p>
-
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

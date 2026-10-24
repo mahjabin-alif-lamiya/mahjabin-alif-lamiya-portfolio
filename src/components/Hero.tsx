@@ -1,132 +1,150 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiDownload, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+};
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative pt-28 pb-20 md:pt-36 md:pb-28 bg-gradient-to-b from-navy-950 via-navy-900 to-primary text-white overflow-hidden"
-    >
-      {/* Subtle background glow elements */}
-      <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-10 right-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
+    <section id="home" className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[38rem] bg-gradient-hero" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/25 blur-[120px]" />
+      <div className="pointer-events-none absolute top-1/3 right-[-10%] h-80 w-80 rounded-full bg-accentViolet/18 blur-[140px]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Text Content */}
-          <div className="lg:col-span-7 text-center lg:text-left animate-slide-up">
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-850 border border-navy-700 text-blue-300 text-xs font-medium mb-6 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for Software Engineering Internships</span>
-            </div>
+      <div className="section-inner">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          <motion.div
+            className="lg:col-span-7 text-center lg:text-left"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
-              Mahjabin Alif Lamiya
-            </h1>
+            <motion.h1
+              variants={item}
+              className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+            >
+              <span className="block">Mahjabin Alif</span>
+              <span className="gradient-text block">Lamiya</span>
+            </motion.h1>
 
-            <p className="text-base sm:text-lg md:text-xl font-semibold text-blue-300 mb-5">
-              CSE Student &bull; Software Developer &bull; AI-Integrated Web Applications
-            </p>
+            <motion.p
+              variants={item}
+              className="mt-4 text-lg font-semibold text-foreground/90 sm:text-xl md:text-2xl"
+            >
+              CSE Student • Software Developer • AI-Integrated Web Applications
+            </motion.p>
 
-            <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
-              Computer Science and Engineering undergraduate focused on full-stack and
-              AI-integrated web development using <span className="text-white font-medium">Next.js</span>,{" "}
-              <span className="text-white font-medium">MongoDB</span>, and the{" "}
-              <span className="text-white font-medium">Gemini API</span>. Experienced in building and deploying
-              production web applications, technical team collaboration, and competitive AI hackathons.
-            </p>
+            <motion.p
+              variants={item}
+              className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
+            >
+              Computer Science and Engineering undergraduate focused on full-stack and AI-integrated web
+              development using <span className="text-foreground">Next.js</span>,{" "}
+              <span className="text-foreground">MongoDB</span>, and the{" "}
+              <span className="text-foreground">Google Gemini API</span>. Experienced in building and
+              deploying production web applications, technical team collaboration, and competitive AI
+              hackathons.
+            </motion.p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+            <motion.div
+              variants={item}
+              className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+            >
               <a
                 href="/resume.pdf"
                 download="Mahjabin_Alif_Lamiya_Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accentHover text-white px-6 py-3.5 rounded-lg font-semibold text-sm shadow-lg shadow-blue-900/30 hover:shadow-blue-900/50 transition-all duration-200"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accentViolet px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.02]"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
+                <FiDownload className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
                 Download Resume
               </a>
-
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-navy-850 hover:bg-navy-800 text-white border border-slate-600 hover:border-slate-400 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all duration-200 shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-accent/10"
               >
                 Contact Me
               </Link>
-            </div>
+            </motion.div>
 
-            {/* Social & Contact Links */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 pt-2 border-t border-navy-800/80">
-              <span className="text-xs uppercase tracking-wider font-semibold text-slate-400">
-                Connect:
-              </span>
-
+            <motion.div
+              variants={item}
+              className="mt-8 flex flex-wrap items-center justify-center gap-3 border-t border-border/60 pt-6 lg:justify-start"
+            >
+              <span className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Connect</span>
               <a
                 href="https://github.com/mahjabin-alif-lamiya"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-slate-300 hover:text-white px-3 py-1.5 rounded-md hover:bg-navy-850 border border-transparent hover:border-navy-700 transition-colors text-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="GitHub Profile"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                <span>GitHub</span>
+                <FiGithub className="h-4 w-4" />
+                GitHub
               </a>
-
               <a
                 href="https://linkedin.com/in/mahjabinaalif"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-slate-300 hover:text-white px-3 py-1.5 rounded-md hover:bg-navy-850 border border-transparent hover:border-navy-700 transition-colors text-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="LinkedIn Profile"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-                <span>LinkedIn</span>
+                <FiLinkedin className="h-4 w-4" />
+                LinkedIn
               </a>
-
               <a
                 href="mailto:alif03lamiya@gmail.com"
-                className="inline-flex items-center gap-2 text-slate-300 hover:text-white px-3 py-1.5 rounded-md hover:bg-navy-850 border border-transparent hover:border-navy-700 transition-colors text-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Email Address"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>Email</span>
+                <FiMail className="h-4 w-4" />
+                Email
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Profile Photo */}
-          <div className="lg:col-span-5 flex justify-center animate-fade-in">
+          <motion.div
+            className="lg:col-span-5 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          >
             <div className="relative">
-              {/* Outer decorative ring */}
-              <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full p-2 bg-gradient-to-tr from-accent via-blue-400 to-navy-700 shadow-2xl">
-                <div className="relative w-full h-full rounded-full overflow-hidden bg-navy-950 border-4 border-navy-950">
-                  <Image
-                    src="/profile.png"
-                    alt="My profile photo"
-                    fill
-                    sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
-                    className="object-cover object-center"
-                    priority
-                  />
+              <div className="absolute -inset-10 rounded-full bg-gradient-to-tr from-accent via-accentViolet to-cyan-400 opacity-30 blur-[120px]" />
+              <div className="relative h-64 w-64 rounded-full p-[1px] sm:h-72 sm:w-72 md:h-80 md:w-80">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent via-accentViolet to-cyan-400" />
+                <div className="relative h-full w-full rounded-full bg-background p-1.5">
+                  <div className="relative h-full w-full overflow-hidden rounded-full">
+                    <Image
+                      src="/profile.png"
+                      alt="Portrait of Mahjabin Alif Lamiya"
+                      fill
+                      sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+                      className="object-cover object-center"
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -129,7 +129,7 @@ export default async function ProjectDetailPage({
                   </a>
                 )}
 
-                {project.clientRepo && (
+                {project.clientRepo && project.id !== "recipehub" && (
                   <a
                     href={project.clientRepo}
                     target="_blank"
@@ -302,7 +302,7 @@ export default async function ProjectDetailPage({
                     </a>
                   )}
 
-                  {project.clientRepo && (
+                  {project.clientRepo && project.id !== "recipehub" && (
                     <a
                       href={project.clientRepo}
                       target="_blank"
@@ -316,7 +316,7 @@ export default async function ProjectDetailPage({
                     </a>
                   )}
 
-                  {project.serverRepo && (
+                  {project.serverRepo && project.id !== "recipehub" && (
                     <a
                       href={project.serverRepo}
                       target="_blank"

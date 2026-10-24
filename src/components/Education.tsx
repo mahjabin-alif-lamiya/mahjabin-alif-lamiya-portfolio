@@ -1,79 +1,95 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FiCalendar, FiBookOpen, FiAward } from "react-icons/fi";
+
+const coursework = [
+  "Data Structures & Algorithms",
+  "Database Management Systems",
+  "Software Engineering",
+  "Theory of Computation",
+  "Computer Graphics",
+  "Machine Learning",
+];
+
 export default function Education() {
-  const coursework = [
-    "Data Structures & Algorithms",
-    "Database Management Systems",
-    "Software Engineering",
-    "Theory of Computation",
-    "Computer Graphics",
-    "Machine Learning",
-  ];
-
   return (
-    <section id="education" className="py-20 md:py-28 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-accent mb-2">
-            Academic Background
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
-            Education
+    <section id="education" className="section-shell">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-cyan-400/10 to-transparent" />
+      <div className="section-inner">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="section-kicker">Academic Background</p>
+          <h2 className="section-title font-display">
+            <span className="gradient-text">Education</span>
           </h2>
-          <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
-        </div>
+          <div className="section-divider" />
+        </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          {/* Degree Card */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all relative overflow-hidden">
-            {/* Top Accent Bar */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent via-blue-500 to-navy-700" />
-
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-              <div>
-                <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-accent font-semibold text-xs tracking-wide uppercase mb-2">
+        <motion.div
+          className="mx-auto max-w-4xl"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9 }}
+        >
+          <article className="group relative overflow-hidden rounded-3xl border border-border bg-card/80">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
+            <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-accent/12 blur-3xl" />
+            <div className="relative grid gap-8 p-6 sm:p-10 lg:grid-cols-[auto,1fr]">
+              <div className="flex flex-col items-start gap-4">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent/25 to-accentViolet/25 text-accent">
+                  <FiAward className="h-6 w-6" />
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs uppercase tracking-[0.4em] text-muted-foreground">
                   Undergraduate Degree
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-navy-950 tracking-tight">
-                  Bachelor of Science in Computer Science and Engineering (CSE)
-                </h3>
-                <p className="text-base sm:text-lg font-semibold text-accent mt-1">
-                  Chittagong Independent University
+                </div>
+              </div>
+              <div>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="font-display text-2xl font-bold sm:text-3xl">
+                      Bachelor of Science in Computer Science and Engineering (CSE)
+                    </h3>
+                    <p className="mt-2 text-lg font-semibold text-accent">
+                      Chittagong Independent University
+                    </p>
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground">
+                    <FiCalendar className="h-4 w-4" />
+                    Expected Graduation: 2027
+                  </div>
+                </div>
+                <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+                  Rigorous undergraduate engineering curriculum combining strong core theoretical
+                  foundations in algorithms and systems with modern software engineering practices,
+                  databases, and applied machine learning.
                 </p>
-              </div>
-
-              <div className="sm:text-right shrink-0">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-medium">
-                  <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Expected Graduation: 2027
-                </span>
-              </div>
-            </div>
-
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-              Rigorous undergraduate engineering curriculum combining strong core theoretical foundations
-              in algorithms and systems with modern software engineering practices, databases, and applied machine learning.
-            </p>
-
-            {/* Relevant Coursework */}
-            <div>
-              <h4 className="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3">
-                Relevant Coursework
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {coursework.map((course) => (
-                  <span
-                    key={course}
-                    className="inline-flex items-center px-3 py-1.5 rounded-md bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-medium hover:border-blue-300 transition-colors"
-                  >
-                    {course}
-                  </span>
-                ))}
+                <div className="mt-8">
+                  <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.4em] text-muted-foreground">
+                    <FiBookOpen className="h-4 w-4" />
+                    Relevant Coursework
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {coursework.map((course) => (
+                      <span
+                        key={course}
+                        className="rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-accent/60 hover:text-foreground"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </article>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,141 +1,139 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { FiArrowUpRight, FiExternalLink } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-accent mb-2">
-            Selected Work
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
-            Featured Projects
+    <section id="projects" className="section-shell">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-accent/12 to-transparent" />
+      <div className="section-inner">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="section-kicker">Selected Work</p>
+          <h2 className="section-title font-display">
+            Featured <span className="gradient-text">Projects</span>
           </h2>
-          <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
+          <div className="section-divider" />
+          <p className="mt-4 mx-auto max-w-2xl text-base text-muted-foreground">
             Verified production web applications, solo AI hackathon submissions, and collaborative
             university software projects built with Next.js, React, and MongoDB.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <article
-              key={project.id}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div>
-                {/* Visual Card Banner */}
-                <div className="h-44 bg-gradient-to-br from-navy-950 via-navy-900 to-secondary p-5 flex flex-col justify-between relative overflow-hidden">
-                  {/* Subtle decorative grid/glow */}
-                  <div
-                    className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-accent/20 blur-2xl pointer-events-none"
-                    aria-hidden="true"
-                  />
-                  <div
-                    className="absolute -left-6 -top-6 w-24 h-24 rounded-full bg-blue-400/10 blur-xl pointer-events-none"
-                    aria-hidden="true"
-                  />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => {
+            const isChampion = project.title === "MediBondhu";
 
-                  <div className="flex items-center justify-between z-10">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-navy-800 text-blue-200 border border-navy-700">
-                      0{index + 1} &bull; {project.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-950/70 border border-emerald-800 px-2.5 py-0.5 rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Live
-                    </span>
-                  </div>
-
-                  <div className="z-10">
-                    <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-blue-300 transition-colors">
-                      {project.title}
-                    </h3>
-                    {project.highlightBadge && (
-                      <span className="inline-block mt-1 text-xs font-semibold px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/30">
-                        {project.highlightBadge}
+            return (
+              <motion.article
+                key={project.id}
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card/80 transition-transform hover:-translate-y-1"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: index * 0.08 }}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-accentViolet/30 to-cyan-400/20" />
+                  <div className="absolute inset-0 grid-overlay opacity-40" />
+                  <div className="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-accent/30 blur-3xl" />
+                  <div className="relative flex h-full flex-col justify-between p-6">
+                    <div className="flex items-center justify-between">
+                      <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs uppercase tracking-[0.3em] text-white">
+                        0{index + 1} • {project.category}
                       </span>
-                    )}
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-400/15 px-2.5 py-0.5 text-xs text-emerald-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                        Live
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="font-display text-2xl font-bold text-white">{project.title}</h3>
+                      {project.highlightBadge && (
+                        <span
+                          className={`mt-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs ${
+                            isChampion
+                              ? "border border-amber-300/60 bg-amber-300/20 text-amber-100"
+                              : "border border-white/20 bg-white/10 text-white/80"
+                          }`}
+                        >
+                          {project.highlightBadge}
+                        </span>
+                      )}
+                    </div>
                   </div>
+                  {isChampion && (
+                    <div className="absolute left-0 top-4 rotate-[-12deg] rounded-r-full bg-gradient-to-r from-amber-400 to-orange-400 px-4 py-1 text-xs font-semibold text-slate-950 shadow-lg">
+                      Champion
+                    </div>
+                  )}
                 </div>
 
-                {/* Content Area */}
-                <div className="p-6">
-                  <p className="text-slate-600 text-sm leading-relaxed mb-5 min-h-[4rem]">
+                <div className="flex flex-1 flex-col gap-5 p-6">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     {project.shortDescription}
                   </p>
-
-                  {/* Tech Stack */}
-                  <div className="mb-6">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">
                       Technologies
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
                       {project.techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-800 text-xs font-medium border border-slate-200"
+                          className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50">
-                <div className="flex flex-wrap items-center gap-2">
-                  {/* Live Demo Link */}
-                  {project.liveLink && project.liveLink !== "#" && (
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-accent hover:bg-accentHover text-white px-3.5 py-2 rounded-lg text-xs font-semibold shadow-sm transition-colors"
-                      aria-label={`View live demo of ${project.title}`}
+                  <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-border/60 pt-4">
+                    {project.liveLink && project.liveLink !== "#" && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accentViolet px-3.5 py-1.5 text-xs font-semibold text-white"
+                        aria-label={`View live demo of ${project.title}`}
+                      >
+                        <FiExternalLink className="h-3.5 w-3.5" />
+                        Live Demo
+                      </a>
+                    )}
+                    {project.clientRepo && project.id !== "recipehub" && (
+                      <a
+                        href={project.clientRepo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
+                        aria-label={`View ${project.title} source code on GitHub`}
+                      >
+                        <FaGithub className="h-3.5 w-3.5" />
+                        Code
+                      </a>
+                    )}
+                    <Link
+                      href={`/projects/${project.id}`}
+                      className="ml-auto inline-flex items-center gap-1 text-xs font-semibold text-accent"
                     >
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Live Demo
-                    </a>
-                  )}
-
-                  {/* Source Code Links (verified only) */}
-                  {project.clientRepo && (
-                    <a
-                      href={project.clientRepo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-3 py-2 rounded-lg text-xs font-semibold transition-colors"
-                      aria-label={`View ${project.title} source code on GitHub`}
-                    >
-                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                      Code
-                    </a>
-                  )}
-
-                  {/* Project Details Link */}
-                  <Link
-                    href={`/projects/${project.id}`}
-                    className="inline-flex items-center gap-1 ml-auto text-accent hover:text-accentHover text-xs font-semibold hover:underline py-2"
-                  >
-                    Details
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                      Details
+                      <FiArrowUpRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>
